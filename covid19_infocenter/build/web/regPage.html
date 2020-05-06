@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>COVID-19 INFORMATION CENTER</title>
+</head>
+<body>
+<h1>COVID-19 SURVEY</h1>
+<form id="regForm" action = "survey">
+    <h1 id="fnlMsg"></h1>
+<table>
+<tr>
+<td>
+Name:
+</td>
+<td>
+<input type="text" placeholder="Name" name="name">
+</td>
+</tr>
+
+<tr>
+<td>
+Aadhar no:
+</td>
+<td>
+<input type="text" placeholder="Aadhar_no" name="aadhar">
+</td>
+</tr>
+
+<tr>
+<td>
+Mobile no:
+</td>
+<td>
+<input type="phone" placeholder="+91 9876******" name="mobile">
+</td>
+</tr>
+
+<tr>
+<td>
+Fever(in last 7 days):
+</td>
+<td>
+<input type="radio" name="fever" value="yes">Yes
+<input type="radio" name="fever" value="no">No
+</td>
+</tr>
+
+<tr>
+<td>
+Cold/Cough(in last 7 days):
+</td>
+<td>
+<input type="radio" name="cc" value="yes">Yes
+<input type="radio" name="cc" value="no">No
+</td>
+</tr>
+
+<tr>
+<td>
+Last foreign trip:
+</td>
+<td>
+<input type="date" name="date">
+</td>
+</tr>
+
+<tr><td>
+<input type="Submit" value="Submit" id="regSub" name="">
+</td></tr>
+
+</table>
+</form>
+</body>
+<script>
+      $(document).ready(function () {
+          console.log('entered') ;
+          $('#regSub').on('click' , function(){
+             var packet = $('#regForm').serialize() ;
+              $.ajax({
+                    url:'survey' , 
+                    data : f , 
+                    type : 'GET' , 
+                    success : function(data , textStatus , jqXHR){
+                        if(data.trim() === "done")
+                        {
+                            $('#fnlMsg').html('Successfully registered') ;
+                        }
+                        else{
+                             $('#fnlMsg').html('Not Registered') ;
+                        }
+                    }
+                }) ;
+          });
+      });
+</script>
+</html>
